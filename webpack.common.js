@@ -4,17 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: './src/index.js',
     output: {
+        filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
-    },
-    mode: 'production',
-    devServer: {
-        client: {
-            overlay: {
-                errors: true,
-                warnings: false,
-            },
-        },
     },
     module: {
         rules: [
@@ -29,25 +20,13 @@ module.exports = {
                     },
                 ],
             },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env'],
-                        },
-                    },
-                ],
-            },
         ],
     },
-    
+
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/template.html',
-            filename: './index.html',
+            filename: 'index.html',
         }),
     ],
 };
